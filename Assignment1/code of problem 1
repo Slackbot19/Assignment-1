@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+int main () {
+   int n;
+    cin>>n;
+    cout<<"\n";
+    int m=(2*n);
+    int pair[m][n];
+    //inputting the preferences of men and women respectively
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>pair[i][j];
+        }
+        cout<<"\n";
+    }
+    int r[4][4],com;
+    int p=0,q=0;
+    //forming two arrays respectively having preferences of women and men
+    //array a has preferences of men (ie women) and array b has preferences of women(ie men)
+  int a[n][n],b[n][n];
+  for(int i=0;i<n;i++)
+  {
+      for(int j=0;j<n;j++)
+      {
+          a[i][j]=pair[i][j];
+      }
+  }
+   for(int i=n;i<(2*n);i++)
+  {
+      for(int j=0;j<n;j++)
+      {
+          b[i-n][j]=pair[i][j];
+      }
+  }
+  //forming stable marriage pairs
+  for(int j=0;j<n;j++)
+  {
+      for(int i=0;i<n;i++)
+      {
+          com=a[i][0];
+          if((a[i][0]==com)&&(b[com-n][j]==i))
+          {
+              r[p][q]=com;
+              r[p][q+1]=i;
+              p=p+1;
+              q=0;
+          }
+
+      }
+  }
+  for(int i=0;i<4;i++)
+  {
+      for(int j=0;j<4;j++)
+      {
+          cout<<r[i][j];
+      }
+      cout<<"\n";
+  }
+
+   return 0;
+}
+
